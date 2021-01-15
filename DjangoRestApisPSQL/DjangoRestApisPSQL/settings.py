@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Django REST framework
     'rest_framework',
-    'restapi.apps.RestapiConfig',
+    'energy.apps.RestapiConfig',
 
     # CORS
     'corsheaders',
