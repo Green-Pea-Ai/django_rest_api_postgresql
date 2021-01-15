@@ -29,11 +29,12 @@ def energy_list(request):
 		if energy_serializer.is_valid():
 			energy_serializer.save()
 			return JsonResponse(energy_serializer.data, status=status.HTTP_201_CREATED)
-		return JsonResponse(energy_serializer.errors, status=status.status.HTTP_400_BAD_REQUEST)
+		return JsonResponse(energy_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	elif request.method == 'DELETE':
-		count  = Wdmodel.objects.all().delete()
-		return JsonResponse({'message': '{} Energys were deleted successfully!'.format(count[0])}, status=status.status.HTTP_204_NO_CONTENT)
+		count = Wdmodel.objects.all().delete()
+		return JsonResponse({'message': '{} Energys were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def energy_detail(request, pk):
@@ -54,11 +55,12 @@ def energy_detail(request, pk):
 		if energy_serializer.is_valid():
 			energy_serializer.save()
 			return JsonResponse(energy_serializer.data)
-		return JsonResponse(energy_serializer.errors, status=status.status.HTTP_400_BAD_REQUEST)
+		return JsonResponse(energy_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	elif request.method == 'DELETE':
 		energy.delete()
-		return JsonResponse({'message': 'Energy was deleted successfully!'}, status=status.status.HTTP_204_NO_CONTENT)
+		return JsonResponse({'message': 'Energy was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET'])
 def energy_list_published(request):
