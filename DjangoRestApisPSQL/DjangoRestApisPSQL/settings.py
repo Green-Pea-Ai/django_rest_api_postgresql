@@ -33,6 +33,10 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Django REST framework
     'rest_framework',
+    'restapi.apps.RestapiConfig',
+
+    # CORS
+    'corsheaders',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,14 +47,23 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8081',
+)
 
 ROOT_URLCONF = 'DjangoRestApisPSQL.urls'
 
@@ -79,8 +92,8 @@ WSGI_APPLICATION = 'DjangoRestApisPSQL.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'testdb',
-        'USER': 'user',
+        'NAME': 'wd_api_db',
+        'USER': 'wdmin',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
